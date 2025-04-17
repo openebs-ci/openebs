@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 help() {
   cat <<EOF
 Usage: $(basename "$0") [OPTIONS]
