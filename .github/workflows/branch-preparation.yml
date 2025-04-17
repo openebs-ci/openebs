@@ -64,14 +64,12 @@ jobs:
 
       - name: Pre-populate nix-shell
         run: |
-          set -euo pipefail
           export NIX_PATH=nixpkgs=$(jq '.nixpkgs.url' nix/sources.json -r)
           echo "NIX_PATH=$NIX_PATH" >> $GITHUB_ENV
           nix-shell --pure --run "echo" ./shell.nix
 
       - name: Modify chart version upon release branch creation
         run: |
-          set -euo pipefail
           nix-shell --pure --run "./scripts/helm/update-chart-version.sh \
             --chart-version ${VERSION} \
             --app-version ${APP_VERSION} \
